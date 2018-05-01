@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<!--
+    We'll use Babel for this branch, removing the old ReactDOMFactories CDN.
+    For the example below, Babel is super slow since it's loaded when the page loads.
+    This means that the JSX conversion happens on load too. Not good for a production
+    environment.
+-->
+
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -6,28 +15,37 @@
         <script type="text/javascript" src="https://unpkg.com/react@16.0.0-rc.2/umd/react.development.js"></script>
         <script type="text/javascript" src="https://unpkg.com/react-dom@16.0.0-rc.2/umd/react-dom.development.js"></script>
         
-        <!--ReactDOMFactories Let's Us Create React Elements-->
-        <script type="text/javascript" src="https://unpkg.com/react-dom-factories@1.0.0/index.js"></script>
+        <!--Switched ReactDOMFactories to Babel CDN-->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
     </head>
     
     <body>
         
         <div id='app'></div>
-        <script type="text/javascript">
+        <!--Tells Babel What To Transcript-->
+        <script type="text/babel">
             class Pet extends React.Component {
                 
                 render() {
-                    const h2 = ReactDOMFactories.h2(null, "Moxie");
-                    const img = ReactDOMFactories.img({
-                        src: "https://github.com/tigarcia/Moxie/raw/master/moxie.png",
-                        alt: "Moxie, my cat"
-                    });
                     
+                    /*
+                        In Babel, you have to close out tags with that '/>' notation.
+                        Used it for the img below
+                    */
+                    
+                    return (
+                        <div>
+                            <h2>Moxie</h2>
+                            <img src='https://github.com/tigarcia/Moxie/raw/master/moxie.png'
+                                 alt='Moxie, my cat.' />
+                        </div>
+                    )
                     return ReactDOMFactories.div(null, h2, img);
                 }
             }
             
-            ReactDOM.render(React.createElement(Pet), document.getElementById('app'));
+            /*We can use JSX below as well, removing that VanillaJS 'createElement' method*/
+            ReactDOM.render(<Pet />, document.getElementById('app'));
         </script>
         
     </body>
