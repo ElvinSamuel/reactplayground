@@ -32,14 +32,28 @@
                     
                     /*
                         In Babel, you have to close out tags with that '/>' notation.
-                        Used it for the img below
+                        Used it for the img tag.
+                      
+                        Adding inline styles to React isn't bad -- unlike 
+                        adding it to a plain HTML file. Seperation of Concerns
+                        isn't really a concern here since React components
+                        are all 'bundled up' packages, and therefore self-contained.
                     */
                     
+                    const liStyle = {fontSize: '1.5em'};
+                    
                     return (
+                        
+                        
                         <div className='card'>
                             <h2 className='name'>Moxie</h2>
                             <img src='https://github.com/tigarcia/Moxie/raw/master/moxie.png'
                                  alt='Moxie, my cat.' />
+                            <h5>Hobbies</h5>
+                            <ul>
+                                <li style={liStyle}>Sleep</li>
+                                <li style={liStyle}>Eat</li>
+                            </ul>
                         </div>
                     )
                     return ReactDOMFactories.div(null, h2, img);
