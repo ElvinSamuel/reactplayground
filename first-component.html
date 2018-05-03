@@ -26,6 +26,24 @@
         <div id='app'></div>
         <!--Tells Babel What To Transcript-->
         <script type="text/babel">
+        
+            class HobbyList extends React.Component {
+                render() {
+                    const hobbies = ["Sleeping", "Eating", "Cuddling"];
+                    const style = {fontSize: '1.5em'}; 
+                    
+                    return (
+                        <ul>
+                            {hobbies.map((h, i) => {
+                            
+                               return <li key={i} style={style}>{h}</li> 
+                           
+                            })}
+                        </ul>
+                    );
+                }
+            }
+        
             class Pet extends React.Component {
                 
                 render() {
@@ -52,7 +70,6 @@
                         ***Assuming that a third or more are just embedded objects***
                     */
                     const style = {fontSize: '1.5em'};
-                    const hobbies = ["Sleeping", "Eating", "Cuddling"];
                     
                     
                     return (
@@ -64,13 +81,10 @@
                                  
                              
                             <h5 style={{fontSize: '2em', margin: '2px'}}>Hobbies:</h5>
-                            <ul>
-                                {hobbies.map((h, i) => {
-                                    
-                                   return <li key={i} style={style}>{h}</li> 
-                                   
-                                })}
-                            </ul>
+                            
+                            
+                            /*For our separate component above, we just render it below*/
+                            <HobbyList />
                         </div>);
                 }
             }
